@@ -29,12 +29,8 @@ class HelloController {
     @GetMapping("hello-api")
     @ResponseBody
     fun helloApi(@RequestParam("name") name: String): Hello {
-        val hello = Hello()
-        hello.name = name
-        return hello
+        return Hello(name)
     }
 
-    class Hello {
-        lateinit var name: String
-    }
+    class Hello(name: String)
 }
