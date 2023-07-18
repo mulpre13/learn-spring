@@ -1,8 +1,10 @@
 package woosung.learn.spring.service
 
+import org.springframework.stereotype.Service
 import woosung.learn.spring.domain.Member
 import woosung.learn.spring.repository.MemoryMemberRepository
 
+@Service
 class MemberService(
     private val memberRepository: MemoryMemberRepository
 ) {
