@@ -2,7 +2,7 @@ package woosung.learn.spring.service
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe
 import woosung.learn.spring.repository.MemoryMemberRepository
 
@@ -51,7 +51,7 @@ class MemberServiceTest : FunSpec({
         // then
         val members = memberService.findMembers()
         members.size shouldBe 2
-        members.map { it.id } shouldContainAll listOf(member1, member2)
+        members.map { it.id } shouldContainExactlyInAnyOrder listOf(member1, member2)
     }
 
     test("findOne") {

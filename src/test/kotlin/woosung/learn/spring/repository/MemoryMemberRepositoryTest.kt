@@ -1,7 +1,7 @@
 package woosung.learn.spring.repository
 
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe
 import woosung.learn.spring.domain.Member
 
@@ -37,7 +37,7 @@ class MemoryMemberRepositoryTest() : FunSpec() {
 
             val result: List<Member> = repository.findAll()
             result.size shouldBe 2
-            result.map{it.id} shouldContainAll listOf(member1.id, member2.id)
+            result.map { it.id } shouldContainExactlyInAnyOrder listOf(member1.id, member2.id)
         }
     }
 }
