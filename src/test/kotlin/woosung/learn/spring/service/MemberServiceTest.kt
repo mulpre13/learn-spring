@@ -64,7 +64,9 @@ class MemberServiceTest : FunSpec({
         val id2 = memberService.join(name2)
 
         // then
-        val member = memberService.findMember(id1)!!
-        member.id shouldBe id1
+        val member1 = memberService.findMember(id1)!!
+        val member2 = memberService.findMember(id2)!!
+        member1.id shouldBe id1
+        member2.id shouldBe id2
     }
 })
