@@ -2,11 +2,11 @@ package woosung.learn.spring.service
 
 import org.springframework.stereotype.Service
 import woosung.learn.spring.domain.Member
-import woosung.learn.spring.repository.MemoryMemberRepository
+import woosung.learn.spring.repository.JdbcMemberRepository
 
 @Service
 class MemberService(
-    private val memberRepository: MemoryMemberRepository
+    private val memberRepository: JdbcMemberRepository
 ) {
     fun join(name: String): Long {
         memberRepository.findByName(name)?.let { throw IllegalStateException("User already exists") }
