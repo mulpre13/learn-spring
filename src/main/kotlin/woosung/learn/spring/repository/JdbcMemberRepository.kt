@@ -48,7 +48,7 @@ class JdbcMemberRepository(
     }
 
     override fun findByName(name: String): Member? {
-        val sql = "select * from member"
+        val sql = "select * from member where name = ?"
 
         dataSource.connection.use { conn ->
             conn.prepareStatement(sql).use { pstmt ->
