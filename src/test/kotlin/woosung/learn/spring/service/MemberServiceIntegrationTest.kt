@@ -18,6 +18,7 @@ class ProjectConfig : AbstractProjectConfig() {
     override val isolationMode = IsolationMode.InstancePerTest
 }
 
+// TODO transactional is not applying;
 @SpringBootTest
 @Transactional
 class MemberServiceIntegrationTest(
