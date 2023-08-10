@@ -9,7 +9,7 @@ import woosung.learn.spring.repository.MemberRepository
 @Service
 @Transactional
 class MemberService(
-    @Qualifier("jpaMemberRepository") private val memberRepository: MemberRepository
+    private val memberRepository: MemberRepository
 ) {
     fun join(name: String): Long {
         memberRepository.findByName(name)?.let { throw IllegalStateException("User already exists") }
