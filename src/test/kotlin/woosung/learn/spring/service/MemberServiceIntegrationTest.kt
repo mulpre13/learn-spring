@@ -23,7 +23,7 @@ class ProjectConfig : AbstractProjectConfig() {
 @Transactional
 class MemberServiceIntegrationTest(
     private val memberService: MemberService,
-    @Qualifier("jdbcTemplateMemberRepository") private val memberRepository: MemberRepository
+    @Qualifier("jpaMemberRepository") private val memberRepository: MemberRepository
 ) : FunSpec() {
     init {
         test("join") {

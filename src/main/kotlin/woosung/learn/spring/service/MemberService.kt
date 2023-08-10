@@ -1,13 +1,15 @@
 package woosung.learn.spring.service
 
+import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 import woosung.learn.spring.domain.Member
 import woosung.learn.spring.repository.MemberRepository
 
 @Service
+@Transactional
 class MemberService(
-    @Qualifier("jdbcTemplateMemberRepository") private val memberRepository: MemberRepository
+    @Qualifier("jpaMemberRepository") private val memberRepository: MemberRepository
 ) {
     fun join(name: String): Long {
         memberRepository.findByName(name)?.let { throw IllegalStateException("User already exists") }
