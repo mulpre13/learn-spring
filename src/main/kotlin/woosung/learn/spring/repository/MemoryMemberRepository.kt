@@ -10,7 +10,7 @@ class MemoryMemberRepository : MemberRepository {
 
     override fun save(name: String): Member {
         val member = Member(++sequence, name)
-        store[member.id] = member
+        store[member.id!!] = member
         return member
     }
 

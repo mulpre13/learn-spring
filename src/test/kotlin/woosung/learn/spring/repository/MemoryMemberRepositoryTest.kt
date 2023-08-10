@@ -15,7 +15,7 @@ class MemoryMemberRepositoryTest() : FunSpec() {
 
         test("save") {
             val member: Member = repository.save("spring")
-            val result: Member = repository.findById(member.id)!!
+            val result: Member = repository.findById(member.id!!)!!
 
             result shouldBe member
         }

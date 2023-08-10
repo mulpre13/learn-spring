@@ -11,7 +11,7 @@ class MemberService(
 ) {
     fun join(name: String): Long {
         memberRepository.findByName(name)?.let { throw IllegalStateException("User already exists") }
-        return memberRepository.save(name).id
+        return memberRepository.save(name).id!!
     }
 
     fun findMembers(): List<Member> {
