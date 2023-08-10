@@ -7,7 +7,7 @@ import woosung.learn.spring.repository.MemberRepository
 
 @Service
 class MemberService(
-    @Qualifier("jdbcMemberRepository") private val memberRepository: MemberRepository
+    @Qualifier("jdbcTemplateMemberRepository") private val memberRepository: MemberRepository
 ) {
     fun join(name: String): Long {
         memberRepository.findByName(name)?.let { throw IllegalStateException("User already exists") }
