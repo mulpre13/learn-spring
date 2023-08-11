@@ -1,15 +1,12 @@
 package woosung.learn.spring.repository
 
 import jakarta.persistence.EntityManager
-import org.springframework.stereotype.Repository
 import woosung.learn.spring.domain.Member
 
-@Repository
 class JpaMemberRepository(
     private val em: EntityManager
 ) : MemberRepository {
-    override fun save(name: String): Member {
-        val member = Member(name = name)
+    override fun save(member: Member): Member {
         em.persist(member)
         return member
     }

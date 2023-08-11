@@ -14,15 +14,15 @@ class MemoryMemberRepositoryTest() : FunSpec() {
         }
 
         test("save") {
-            val member: Member = repository.save("spring")
+            val member: Member = repository.save(Member(name = "spring"))
             val result: Member = repository.findById(member.id!!)!!
 
             result shouldBe member
         }
 
         test("findByName") {
-            val member1: Member = repository.save("spring1")
-            val member2: Member = repository.save("spring2")
+            val member1: Member = repository.save(Member(name = "spring1"))
+            val member2: Member = repository.save(Member(name = "spring2"))
 
             val result1: Member = repository.findByName("spring1")!!
             val result2: Member = repository.findByName("spring2")!!
@@ -32,8 +32,8 @@ class MemoryMemberRepositoryTest() : FunSpec() {
         }
 
         test("findAll") {
-            val member1: Member = repository.save("spring1")
-            val member2: Member = repository.save("spring2")
+            val member1: Member = repository.save(Member(name = "spring1"))
+            val member2: Member = repository.save(Member(name = "spring2"))
 
             val result: List<Member> = repository.findAll()
             result.size shouldBe 2

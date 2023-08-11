@@ -7,5 +7,5 @@ import jakarta.persistence.Id
 
 @Entity
 data class Member(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null, val name: String
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null, val name: String
 )

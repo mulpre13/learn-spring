@@ -3,20 +3,18 @@ package woosung.learn.spring.repository
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert
-import org.springframework.stereotype.Repository
 import woosung.learn.spring.domain.Member
 import java.sql.ResultSet
 
-@Repository
 class JdbcTemplateMemberRepository(private val jdbcTemplate: JdbcTemplate) : MemberRepository {
-    override fun save(name: String): Member {
+    override fun save(member: Member): Member {
         val jdbcInsert = SimpleJdbcInsert(jdbcTemplate)
         jdbcInsert.withTableName("member").usingGeneratedKeyColumns("id")
 
-        val parameters: Map<String, String> = mapOf("name" to name)
+        val parameters: Map<String, String> = mapOf("name" to member.name)
 
         val key: Number = jdbcInsert.executeAndReturnKey(MapSqlParameterSource(parameters))
-        return Member(id = key.toLong(), name = name)
+        return Member(id = key.toLong(), name = member.name)
     }
 
     override fun findById(id: Long): Member? {

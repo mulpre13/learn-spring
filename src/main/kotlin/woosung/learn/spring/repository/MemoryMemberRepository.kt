@@ -1,15 +1,13 @@
 package woosung.learn.spring.repository
 
-import org.springframework.stereotype.Repository
 import woosung.learn.spring.domain.Member
 
-@Repository
 class MemoryMemberRepository : MemberRepository {
     private val store = HashMap<Long, Member>()
     private var sequence = 0L
 
-    override fun save(name: String): Member {
-        val member = Member(++sequence, name)
+    override fun save(member: Member): Member {
+        member.id = ++sequence
         store[member.id!!] = member
         return member
     }

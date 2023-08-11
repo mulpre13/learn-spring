@@ -1,7 +1,6 @@
 package woosung.learn.spring.service
 
 import jakarta.transaction.Transactional
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 import woosung.learn.spring.domain.Member
 import woosung.learn.spring.repository.MemberRepository
@@ -13,7 +12,8 @@ class MemberService(
 ) {
     fun join(name: String): Long {
         memberRepository.findByName(name)?.let { throw IllegalStateException("User already exists") }
-        return memberRepository.save(name).id!!
+        val member = Member(name = name)
+        return memberRepository.save(member).id!!
     }
 
     fun findMembers(): List<Member> {

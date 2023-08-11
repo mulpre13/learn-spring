@@ -1,26 +1,24 @@
 package woosung.learn.spring.repository
 
-import org.springframework.stereotype.Repository
 import woosung.learn.spring.domain.Member
 import java.sql.SQLException
 import java.sql.Statement
 import javax.sql.DataSource
 
-@Repository
 class JdbcMemberRepository(
     private val dataSource: DataSource
 ) : MemberRepository {
-    override fun save(name: String): Member {
+    override fun save(member: Member): Member {
         val sql = "insert into member(name) values(?)"
 
         dataSource.connection.use { conn ->
             conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS).use { pstmt ->
-                pstmt.setString(1, name)
+                pstmt.setString(1, member.name)
                 pstmt.executeUpdate()
 
                 pstmt.generatedKeys.use { rs ->
                     if (rs.next()) {
-                        return Member(rs.getLong(1), name)
+                        return Member(rs.getLong(1), member.name)
                     } else {
                         throw SQLException("Failed on ID lookup")
                     }
